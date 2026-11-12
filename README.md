@@ -15,8 +15,12 @@
 
 ![Demo](images/demo.png)
 
-> 🌐 **Try Online**: [https://www.xyzscience.com/](https://www.xyzscience.com/)
+## 🌐 Online Demo & Full-Document Platform (XYZ SCIENCE)
 
+We have upgraded our detection and academic humanization rewriting models into a full-featured platform — **[XYZ SCIENCE](https://www.xyzscience.com/)**:
+
+- 🔍 **[Free Academic AIGC Detector (免费中英文论文AIGC检测)](https://www.xyzscience.com/detection)**: Unlimited free paragraph & full-document `.docx` detection with sentence-level AI probability highlighting and downloadable PDF reports.
+- ✍️ **[Academic AI Humanizer & Rewriter (免费论文降AI率与学术改写)](https://www.xyzscience.com/rewrite)**: Powered by our proprietary academic rewriting model trained on 7M+ research papers to remove AI traces while preserving rigorous academic style (supports both English & Chinese modes, aligned with Turnitin & CNKI standards).
 ---
 
 ## 🧩 Background & Philosophy
