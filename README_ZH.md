@@ -15,13 +15,13 @@
 
 ![Demo](images/demo.png)
 
-## 🌐 Online Demo & Full-Document Platform (XYZ SCIENCE)
+## 🌐 在线体验与全文检测平台（XYZ SCIENCE）
 
-We have upgraded our detection and academic humanization rewriting models into a full-featured platform — **[XYZ SCIENCE](https://www.xyzscience.com/)**:
+我们已将学术 AIGC 检测模型与去 AI 痕迹学术改写模型全面升级为一站式在线平台 —— **[XYZ SCIENCE（学术论文 AIGC 检测与降 AI 率平台）](https://www.xyzscience.com/)**：
 
-- 🔍 **[Free Academic AIGC Detector (免费中英文论文AIGC检测)](https://www.xyzscience.com/detection)**: Unlimited free paragraph & full-document `.docx` detection with sentence-level AI probability highlighting and downloadable PDF reports.
-- ✍️ **[Academic AI Humanizer & Rewriter (免费论文降AI率与学术改写)](https://www.xyzscience.com/rewrite)**: Powered by our proprietary academic rewriting model trained on 7M+ research papers to remove AI traces while preserving rigorous academic style (supports both English & Chinese modes, aligned with Turnitin & CNKI standards).
-- 📚 **[AI Academic Writing Assistant (毕业论文与期刊辅助写作)](https://www.xyzscience.com/writing)** & **[Enterprise API (企业级API与私有化部署)](https://www.xyzscience.com/enterprise)**.
+- 🔍 **[免费中英文论文 AIGC 检测](https://www.xyzscience.com/detection)**：登录后不限次数完全免费使用，支持段落粘贴与上传 Word（`.docx`）文档进行全文 AI 率检测，提供逐句 AI 特征概率高亮标注及 PDF 详细检测报告下载（检测标准对标知网、维普、Turnitin 等主流系统）。
+- ✍️ **[免费论文降 AI 率与学术改写](https://www.xyzscience.com/rewrite)**：基于 700 万+ 篇中英文纯学术论文语料自研训练的专用改写模型（非通用大模型套壳提示词），支持中文标准、中文强力及英文模式，在完整保留原文语义、专业术语与学术严谨风格的基础上精准消除 AI 写作痕迹。
+- 🚀 **[模型技术架构介绍](https://www.xyzscience.com/features)** & **[企业级 API 与高校私有化部署](https://www.xyzscience.com/enterprise)**：支持标准 RESTful API 接入与机构本地化部署。
 ---
 
 ## 🧩 背景与立场
