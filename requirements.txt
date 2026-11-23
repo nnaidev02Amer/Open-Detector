@@ -1,0 +1,14 @@
+# Versions below are the ones this project was set up and tested with (Python 3.11, Windows, CPU).
+# Install torch first (CPU build):  pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0
+transformers==5.23.0
+numpy==2.4.6
+fastapi==0.163.2
+uvicorn==0.54.0
+python-multipart==0.0.34
+python-docx==1.2.0
+pypdf==7.1.0
+# development / evaluation only
+pytest==9.2.0
+httpx==0.28.1
+scikit-learn==1.9.1

@@ -1,0 +1,522 @@
+{
+  "created_utc": "2026-11-23T06:52:14+00:00",
+  "model": "followsci/bert-ai-text-detector",
+  "scores": "raw softmax (uncalibrated) unless stated",
+  "decision_threshold": 0.5,
+  "seed": 13,
+  "dataset_manifest": {
+    "seed": 13,
+    "counts": {
+      "HC3/AI": 1000,
+      "HC3/human": 1000,
+      "MAGE/AI": 500,
+      "MAGE/human": 500,
+      "MAGE-OOD/AI": 150,
+      "MAGE-OOD/human": 150
+    },
+    "total": 3300,
+    "sources": [
+      {
+        "name": "HC3",
+        "url": "https://huggingface.co/datasets/Hello-SimpleAI/HC3",
+        "license": "CC-BY-SA-4.0",
+        "subsets": [
+          "wiki_csai",
+          "finance",
+          "medicine",
+          "open_qa"
+        ],
+        "generators": [
+          "ChatGPT (GPT-3.5, early 2023)"
+        ]
+      },
+      {
+        "name": "MAGE",
+        "url": "https://huggingface.co/datasets/yaful/MAGE",
+        "license": "Apache-2.0",
+        "files": [
+          "test.csv",
+          "test_ood_set_gpt.csv"
+        ],
+        "generators": [
+          "27 LLMs (see MAGE paper)"
+        ]
+      }
+    ],
+    "filters": {
+      "min_words": 40,
+      "max_words": 400,
+      "dedupe": "first 300 characters"
+    },
+    "caveats": [
+      "None of these datasets is arXiv-style academic prose; they are out-of-domain for the model.",
+      "The model's own training/test split is not public, so overlap with these public datasets cannot be ruled out.",
+      "HC3 AI text is from ChatGPT (2023); newer LLMs may behave differently."
+    ]
+  },
+  "datasets": [
+    {
+      "n": 2000,
+      "n_ai": 1000,
+      "n_human": 1000,
+      "accuracy": 0.767,
+      "precision": 0.8667582417582418,
+      "recall": 0.631,
+      "f1": 0.7303240740740742,
+      "false_positive_rate": 0.097,
+      "false_negative_rate": 0.369,
+      "confusion": {
+        "tp": 631,
+        "tn": 903,
+        "fp": 97,
+        "fn": 369
+      },
+      "roc_auc": 0.8839059999999999,
+      "name": "HC3",
+      "bands": {
+        "human_below": 0.35,
+        "ai_above": 0.65,
+        "uncertain_share": 0.0045,
+        "accuracy_on_decided": 0.7679558011049724,
+        "human_called_ai": 0.097,
+        "ai_called_human": 0.365
+      }
+    },
+    {
+      "n": 1000,
+      "n_ai": 500,
+      "n_human": 500,
+      "accuracy": 0.512,
+      "precision": 0.5833333333333334,
+      "recall": 0.084,
+      "f1": 0.14685314685314688,
+      "false_positive_rate": 0.06,
+      "false_negative_rate": 0.916,
+      "confusion": {
+        "tp": 42,
+        "tn": 470,
+        "fp": 30,
+        "fn": 458
+      },
+      "roc_auc": 0.5356240000000001,
+      "name": "MAGE",
+      "bands": {
+        "human_below": 0.35,
+        "ai_above": 0.65,
+        "uncertain_share": 0.002,
+        "accuracy_on_decided": 0.5110220440881763,
+        "human_called_ai": 0.06,
+        "ai_called_human": 0.916
+      }
+    },
+    {
+      "n": 300,
+      "n_ai": 150,
+      "n_human": 150,
+      "accuracy": 0.63,
+      "precision": 0.8545454545454545,
+      "recall": 0.31333333333333335,
+      "f1": 0.4585365853658536,
+      "false_positive_rate": 0.05333333333333334,
+      "false_negative_rate": 0.6866666666666666,
+      "confusion": {
+        "tp": 47,
+        "tn": 142,
+        "fp": 8,
+        "fn": 103
+      },
+      "roc_auc": 0.7788888888888889,
+      "name": "MAGE-OOD (unseen LLM)",
+      "bands": {
+        "human_below": 0.35,
+        "ai_above": 0.65,
+        "uncertain_share": 0.0033333333333333335,
+        "accuracy_on_decided": 0.6321070234113713,
+        "human_called_ai": 0.05333333333333334,
+        "ai_called_human": 0.68
+      }
+    },
+    {
+      "n": 3300,
+      "n_ai": 1650,
+      "n_human": 1650,
+      "accuracy": 0.6772727272727272,
+      "precision": 0.8421052631578947,
+      "recall": 0.43636363636363634,
+      "f1": 0.5748502994011976,
+      "false_positive_rate": 0.08181818181818182,
+      "false_negative_rate": 0.5636363636363636,
+      "confusion": {
+        "tp": 720,
+        "tn": 1515,
+        "fp": 135,
+        "fn": 930
+      },
+      "roc_auc": 0.7679146005509642,
+      "name": "All combined",
+      "bands": {
+        "human_below": 0.35,
+        "ai_above": 0.65,
+        "uncertain_share": 0.0036363636363636364,
+        "accuracy_on_decided": 0.6776155717761557,
+        "human_called_ai": 0.08181818181818182,
+        "ai_called_human": 0.5606060606060606
+      }
+    }
+  ],
+  "hc3_subsets": [
+    {
+      "n": 508,
+      "n_ai": 250,
+      "n_human": 258,
+      "accuracy": 0.6751968503937008,
+      "precision": 0.9775280898876404,
+      "recall": 0.348,
+      "f1": 0.5132743362831859,
+      "false_positive_rate": 0.007751937984496124,
+      "false_negative_rate": 0.652,
+      "confusion": {
+        "tp": 87,
+        "tn": 256,
+        "fp": 2,
+        "fn": 163
+      },
+      "roc_auc": 0.9154263565891473,
+      "name": "HC3 / finance"
+    },
+    {
+      "n": 503,
+      "n_ai": 250,
+      "n_human": 253,
+      "accuracy": 0.7594433399602386,
+      "precision": 0.9708029197080292,
+      "recall": 0.532,
+      "f1": 0.6873385012919898,
+      "false_positive_rate": 0.015810276679841896,
+      "false_negative_rate": 0.468,
+      "confusion": {
+        "tp": 133,
+        "tn": 249,
+        "fp": 4,
+        "fn": 117
+      },
+      "roc_auc": 0.9257075098814229,
+      "name": "HC3 / medicine"
+    },
+    {
+      "n": 488,
+      "n_ai": 250,
+      "n_human": 238,
+      "accuracy": 0.805327868852459,
+      "precision": 0.7609427609427609,
+      "recall": 0.904,
+      "f1": 0.8263254113345521,
+      "false_positive_rate": 0.29831932773109243,
+      "false_negative_rate": 0.096,
+      "confusion": {
+        "tp": 226,
+        "tn": 167,
+        "fp": 71,
+        "fn": 24
+      },
+      "roc_auc": 0.9008739495798319,
+      "name": "HC3 / open_qa"
+    },
+    {
+      "n": 501,
+      "n_ai": 250,
+      "n_human": 251,
+      "accuracy": 0.8303393213572854,
+      "precision": 0.9024390243902439,
+      "recall": 0.74,
+      "f1": 0.8131868131868132,
+      "false_positive_rate": 0.0796812749003984,
+      "false_negative_rate": 0.26,
+      "confusion": {
+        "tp": 185,
+        "tn": 231,
+        "fp": 20,
+        "fn": 65
+      },
+      "roc_auc": 0.9287011952191235,
+      "name": "HC3 / wiki_csai"
+    }
+  ],
+  "by_length": [
+    {
+      "n": 843,
+      "n_ai": 250,
+      "n_human": 593,
+      "accuracy": 0.6832740213523132,
+      "precision": 0.4530386740331492,
+      "recall": 0.328,
+      "f1": 0.3805104408352668,
+      "false_positive_rate": 0.16694772344013492,
+      "false_negative_rate": 0.672,
+      "confusion": {
+        "tp": 82,
+        "tn": 494,
+        "fp": 99,
+        "fn": 168
+      },
+      "roc_auc": 0.5788802698145026,
+      "name": "40-79 words"
+    },
+    {
+      "n": 936,
+      "n_ai": 425,
+      "n_human": 511,
+      "accuracy": 0.75,
+      "precision": 0.8774703557312253,
+      "recall": 0.5223529411764706,
+      "f1": 0.6548672566371682,
+      "false_positive_rate": 0.060665362035225046,
+      "false_negative_rate": 0.4776470588235294,
+      "confusion": {
+        "tp": 222,
+        "tn": 480,
+        "fp": 31,
+        "fn": 203
+      },
+      "roc_auc": 0.7943156440658455,
+      "name": "80-149 words"
+    },
+    {
+      "n": 1004,
+      "n_ai": 699,
+      "n_human": 305,
+      "accuracy": 0.6543824701195219,
+      "precision": 0.9888888888888889,
+      "recall": 0.5092989985693849,
+      "f1": 0.6723323890462702,
+      "false_positive_rate": 0.013114754098360656,
+      "false_negative_rate": 0.4907010014306152,
+      "confusion": {
+        "tp": 356,
+        "tn": 301,
+        "fp": 4,
+        "fn": 343
+      },
+      "roc_auc": 0.8961983160955933,
+      "name": "150-249 words"
+    },
+    {
+      "n": 517,
+      "n_ai": 276,
+      "n_human": 241,
+      "accuracy": 0.5802707930367504,
+      "precision": 0.9836065573770492,
+      "recall": 0.21739130434782608,
+      "f1": 0.35608308605341243,
+      "false_positive_rate": 0.004149377593360996,
+      "false_negative_rate": 0.782608695652174,
+      "confusion": {
+        "tp": 60,
+        "tn": 240,
+        "fp": 1,
+        "fn": 216
+      },
+      "roc_auc": 0.8362799927836913,
+      "name": "250-400 words"
+    }
+  ],
+  "saturated_share": 0.8972727272727272,
+  "short_text_stress": {
+    "first_N_words": 50,
+    "n": 600,
+    "full_text": {
+      "n": 600,
+      "n_ai": 359,
+      "n_human": 241,
+      "accuracy": 0.6816666666666666,
+      "precision": 0.9666666666666667,
+      "recall": 0.48467966573816157,
+      "f1": 0.6456400742115028,
+      "false_positive_rate": 0.024896265560165973,
+      "false_negative_rate": 0.5153203342618384,
+      "confusion": {
+        "tp": 174,
+        "tn": 235,
+        "fp": 6,
+        "fn": 185
+      },
+      "roc_auc": 0.8755302303540262
+    },
+    "truncated": {
+      "n": 600,
+      "n_ai": 359,
+      "n_human": 241,
+      "accuracy": 0.675,
+      "precision": 0.8980582524271845,
+      "recall": 0.5153203342618384,
+      "f1": 0.6548672566371682,
+      "false_positive_rate": 0.08713692946058091,
+      "false_negative_rate": 0.48467966573816157,
+      "confusion": {
+        "tp": 185,
+        "tn": 220,
+        "fp": 21,
+        "fn": 174
+      },
+      "roc_auc": 0.8182017822674787
+    }
+  },
+  "calibration": {
+    "temperature": 12.251305503838722,
+    "fit_on_n": 1650,
+    "evaluated_on_n": 1650,
+    "heldout_raw": {
+      "nll": 2.9020611340831985,
+      "brier": 0.3157487363766593,
+      "ece": 0.31444263492023194,
+      "reliability": [
+        {
+          "bin": [
+            0.0,
+            0.1
+          ],
+          "n": 1190,
+          "mean_score": 0.003301599379985887,
+          "frac_ai": 0.3764705882352941
+        },
+        {
+          "bin": [
+            0.1,
+            0.2
+          ],
+          "n": 19,
+          "mean_score": 0.15770223251010856,
+          "frac_ai": 0.47368421052631576
+        },
+        {
+          "bin": [
+            0.2,
+            0.3
+          ],
+          "n": 8,
+          "mean_score": 0.2566261640010873,
+          "frac_ai": 0.625
+        },
+        {
+          "bin": [
+            0.3,
+            0.4
+          ],
+          "n": 2,
+          "mean_score": 0.30623507687825013,
+          "frac_ai": 1.0
+        },
+        {
+          "bin": [
+            0.4,
+            0.5
+          ],
+          "n": 5,
+          "mean_score": 0.44609710719442364,
+          "frac_ai": 0.6
+        },
+        {
+          "bin": [
+            0.5,
+            0.6
+          ],
+          "n": 1,
+          "mean_score": 0.574265794944804,
+          "frac_ai": 1.0
+        },
+        {
+          "bin": [
+            0.7,
+            0.8
+          ],
+          "n": 5,
+          "mean_score": 0.7526261795147735,
+          "frac_ai": 0.8
+        },
+        {
+          "bin": [
+            0.8,
+            0.9
+          ],
+          "n": 8,
+          "mean_score": 0.8614521886773808,
+          "frac_ai": 0.5
+        },
+        {
+          "bin": [
+            0.9,
+            1.0
+          ],
+          "n": 412,
+          "mean_score": 0.992954702628871,
+          "frac_ai": 0.8470873786407767
+        }
+      ]
+    },
+    "heldout_calibrated": {
+      "nll": 0.6191773327599536,
+      "brier": 0.21415974847655764,
+      "ece": 0.10994195117685612,
+      "reliability": [
+        {
+          "bin": [
+            0.2,
+            0.3
+          ],
+          "n": 841,
+          "mean_score": 0.26085253903043826,
+          "frac_ai": 0.3032104637336504
+        },
+        {
+          "bin": [
+            0.3,
+            0.4
+          ],
+          "n": 228,
+          "mean_score": 0.35923082559643993,
+          "frac_ai": 0.5175438596491229
+        },
+        {
+          "bin": [
+            0.4,
+            0.5
+          ],
+          "n": 155,
+          "mean_score": 0.434230267080872,
+          "frac_ai": 0.6064516129032258
+        },
+        {
+          "bin": [
+            0.5,
+            0.6
+          ],
+          "n": 107,
+          "mean_score": 0.5698226666514286,
+          "frac_ai": 0.7663551401869159
+        },
+        {
+          "bin": [
+            0.6,
+            0.7
+          ],
+          "n": 246,
+          "mean_score": 0.6588151334297885,
+          "frac_ai": 0.8292682926829268
+        },
+        {
+          "bin": [
+            0.7,
+            0.8
+          ],
+          "n": 73,
+          "mean_score": 0.711903115679925,
+          "frac_ai": 0.9863013698630136
+        }
+      ]
+    },
+    "heldout_calibrated_accuracy": 0.6757575757575758,
+    "heldout_raw_accuracy": 0.6757575757575758,
+    "note": "Fitted on HC3+MAGE (out-of-domain relative to the model's arXiv training data); may not transfer to academic text."
+  },
+  "notes": "All numbers computed by evaluation/evaluate.py on public out-of-domain data (HC3, MAGE); the model was trained on arXiv-style academic text, and its own test split is not public, so these figures are NOT comparable to its published 99.57% accuracy and overlap with its training data cannot be excluded."
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#060a16">
+<title>Open Detector</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M8 11h16M8 16h16M8 21h9' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/v2/css/theme.css">
+<link rel="stylesheet" href="/static/v2/css/components.css">
+<link rel="stylesheet" href="/static/v2/css/studio.css">
+<link rel="stylesheet" href="/static/v2/css/stage4.css">
+<link rel="stylesheet" href="/static/v2/css/report.css">
+<link rel="stylesheet" href="/static/v2/css/dual.css">
+</head>
+<body>
+<a class="skip" href="#view">Skip to content</a>
+<div class="app" id="app" data-collapsed="false" data-nav-open="false">
+  <aside class="sidebar" id="sidebar" aria-label="Primary">
+    <a class="brand" href="#/dashboard" aria-label="Open Detector dashboard">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M5 7h14M5 12h14M5 17h8"/><circle cx="18" cy="17" r="2.3" fill="#fff" stroke="none"/></svg>
+      </span>
+      <span class="brand-text"><b>Open Detector</b><span>AI text analysis</span></span>
+    </a>
+    <div class="nav-label">Workspace</div>
+    <nav class="nav" id="nav" aria-label="Modules"></nav>
+    <div class="sidebar-foot">
+      <nav class="nav" aria-label="Other">
+        <a href="/classic" title="Classic interface"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="label">Classic interface</span></a>
+        <a href="#/dual" title="Dual-model comparison"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14M4 9h8M12 15h8"/></svg><span class="label">Dual-model compare</span></a>
+      </nav>
+      <button class="collapse-btn" id="collapseBtn" type="button" aria-expanded="true" title="Collapse sidebar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 6-6 6 6 6M19 6l-6 6 6 6"/></svg><span>Collapse</span>
+      </button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="crumbs"><b id="crumbTitle">Dashboard</b><span id="crumbSub"></span></div>
+      <form class="top-search" id="searchForm" role="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="searchInput" type="search" placeholder="Search analyses…" aria-label="Search analyses" autocomplete="off">
+      </form>
+      <div class="status-chip" id="statusChip" title="Model status"><span class="dot" id="statusDot"></span><span class="chip-text" id="statusText">connecting…</span></div>
+    </header>
+    <main class="view" id="view" tabindex="-1"><noscript>Open Detector needs JavaScript. The <a href="/classic">classic interface</a> also uses it.</noscript></main>
+  </div>
+</div>
+<script type="module" src="/static/v2/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+/* Dual-model comparison page */
+.dual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .dual-grid { grid-template-columns: 1fr; } }
+.model-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+.model-head h3 { margin: 0; }
+.big-prob { display: flex; gap: 22px; margin: 14px 0 10px; flex-wrap: wrap; }
+.big-prob div { min-width: 120px; }
+.big-prob b { display: block; font: 700 28px var(--sans); letter-spacing: -.02em; }
+.big-prob span { font-size: 12px; color: var(--text-2); text-transform: uppercase; letter-spacing: .06em; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 10px 0 0; font-size: 13px; }
+.kv dt { color: var(--text-2); } .kv dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.agree-banner { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 18px; border-radius: 14px; border: 1px solid var(--border); margin-bottom: 18px; }
+.agree-banner.agree { border-color: rgba(var(--human-rgb), .45); background: rgba(var(--human-rgb), .07); }
+.agree-banner.partial { border-color: rgba(var(--uncertain-rgb), .45); background: rgba(var(--uncertain-rgb), .07); }
+.agree-banner.disagree { border-color: rgba(var(--ai-rgb), .55); background: rgba(var(--ai-rgb), .08); }
+.dual-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.dual-table th, .dual-table td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.dual-table th { font-size: 12px; color: var(--text-2); text-transform: uppercase; letter-spacing: .05em; }
+.dual-table tr.row-disagree td { background: rgba(var(--ai-rgb), .07); }
+.dual-table tr.row-partial td { background: rgba(var(--uncertain-rgb), .05); }
+.dual-table .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dual-table .snip { color: var(--text-2); max-width: 360px; }
+.model-error { padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(var(--ai-rgb), .5); background: rgba(var(--ai-rgb), .08); font-size: 14px; }
+.table-wrap { overflow-x: auto; }

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Detector - Document Review</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231d1b17'/%3E%3Cpath d='M8 9h16M8 15h16M8 21h9' stroke='%23faf7f0' stroke-width='2.5'/%3E%3Crect x='19' y='19' width='6' height='5' fill='%23c4452b'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="#analyze" aria-label="Open Detector home">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="brand-name">OPEN&nbsp;DETECTOR</span>
+    <span class="brand-sub">document review</span>
+  </a>
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <a href="#analyze" data-view="analyze">01 Submit</a>
+    <a href="#review" data-view="review">02 Review</a>
+    <a href="#history" data-view="history">03 Archive</a>
+    <a href="#method" data-view="method">04 Method</a>
+  </nav>
+  <div class="bar-right">
+    <span class="chip" id="modelChip" title="Model status">model: loading&hellip;</span>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle light/dark theme" title="Toggle theme">&#9680;</button>
+  </div>
+</header>
+
+<main>
+  <!-- ============ 01 SUBMIT ============ -->
+  <section id="view-analyze" class="view">
+    <div class="page-head">
+      <p class="eyebrow">Exhibit intake</p>
+      <h1>Submit a document for stylometric review</h1>
+      <p class="lede">Paste text or upload a file. The detector reads it paragraph by paragraph and marks which passages
+        <em>resemble</em> AI-generated academic writing. It returns evidence to weigh, not a verdict on authorship.</p>
+    </div>
+
+    <div class="intake">
+      <div class="sheet">
+        <div class="sheet-top">
+          <label for="titleInput" class="mono small">DOCUMENT TITLE</label>
+          <input id="titleInput" type="text" maxlength="120" placeholder="e.g. Chapter 2 draft" autocomplete="off">
+        </div>
+        <textarea id="textInput" spellcheck="false" placeholder="Paste the text to examine here. Works best on English, paragraph-length academic prose of 100+ words."></textarea>
+        <div class="sheet-foot">
+          <span class="mono small" id="wordCount">0 words</span>
+          <span class="mono small meter" id="wordHint">minimum 40 words</span>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload a TXT, DOCX or PDF file">
+          <div class="drop-icon" aria-hidden="true">&#8593;</div>
+          <strong>Upload a file</strong>
+          <span class="small">.txt &middot; .docx &middot; .pdf &middot; up to 10&nbsp;MB</span>
+          <input id="fileInput" type="file" accept=".txt,.md,.docx,.pdf" hidden>
+        </div>
+        <div class="filechip" id="fileChip" hidden>
+          <span id="fileName" class="mono small"></span>
+          <button class="link" id="fileClear" type="button">remove</button>
+        </div>
+        <button class="primary" id="runBtn" type="button">Run analysis <span aria-hidden="true">&rarr;</span></button>
+        <button class="ghost" id="clearBtn" type="button">Clear</button>
+        <div class="error" id="intakeError" role="alert" hidden></div>
+        <ul class="notes small">
+          <li>Text never leaves this computer: the model runs locally.</li>
+          <li>Each run is stored in the local archive (tab 03) and can be deleted.</li>
+          <li>Short or non-English text gives unreliable scores.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ 02 REVIEW ============ -->
+  <section id="view-review" class="view" hidden>
+    <div id="reviewEmpty" class="empty">
+      <p class="eyebrow">Nothing under review</p>
+      <p>Submit a document or open one from the archive.</p>
+      <a class="primary link-btn" href="#analyze">Go to submission</a>
+    </div>
+    <div id="reviewBody" hidden>
+      <div class="page-head tight">
+        <p class="eyebrow" id="revMeta"></p>
+        <h1 id="revTitle"></h1>
+      </div>
+
+      <div id="revInsufficient" class="notice" hidden></div>
+
+      <div class="dash" id="dash">
+        <div class="panel verdict">
+          <p class="mono small label">AI-STYLE SCORE</p>
+          <div class="score" id="scoreBig">--</div>
+          <div class="verdict-tag" id="verdictTag"></div>
+          <p class="small muted" id="scoreCaveat"></p>
+        </div>
+
+        <div class="panel spectrum-panel">
+          <p class="mono small label">WHERE THE SCORE FALLS</p>
+          <div class="spectrum" id="spectrum" role="img" aria-label="Score position on a human to AI scale"></div>
+          <div class="spectrum-scale mono small"><span>0% human-like</span><span id="bandLabelMid">uncertain zone</span><span>100% AI-like</span></div>
+          <details class="how">
+            <summary>How to read this</summary>
+            <p>The marker is the model's output for the whole document. The shaded middle band is the
+              <strong>uncertain zone</strong> where we do not call a verdict. The score is the model's softmax output and is
+              <span id="calNote">not a calibrated probability</span>: &ldquo;80%&rdquo; does not mean an 80% chance the text is AI.</p>
+          </details>
+        </div>
+
+        <div class="panel stats">
+          <p class="mono small label">DOCUMENT FACTS</p>
+          <dl>
+            <div><dt>Words</dt><dd id="stWords">-</dd></div>
+            <div><dt>Words scored</dt><dd id="stScored">-</dd></div>
+            <div><dt>Paragraphs</dt><dd id="stPars">-</dd></div>
+            <div><dt>Paragraphs flagged</dt><dd id="stFlag">-</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="panel strip-panel" id="stripPanel">
+        <div class="strip-head">
+          <p class="mono small label">PARAGRAPH PROFILE</p>
+          <span class="small muted">One bar per paragraph, in reading order. Click to jump.</span>
+        </div>
+        <div class="strip" id="strip"></div>
+        <div class="strip-head hist-head">
+          <p class="mono small label">SENTENCE SCORE DISTRIBUTION</p>
+          <span class="small muted">How context-window scores are spread across sentences.</span>
+        </div>
+        <div class="hist" id="hist"></div>
+      </div>
+
+      <div class="doc-head">
+        <h2>Annotated document</h2>
+        <div class="legend small mono">
+          <span><i class="sw human"></i>human-like</span>
+          <span><i class="sw mid"></i>uncertain</span>
+          <span><i class="sw ai"></i>AI-like</span>
+          <label class="toggle"><input type="checkbox" id="hlToggle" checked> highlights</label>
+        </div>
+      </div>
+      <p class="small muted doc-note">Highlights are <strong>context-window estimates</strong> (each sentence takes the mean score of the
+        3-sentence windows covering it), because the model was trained on paragraphs, not single sentences. Hover a sentence for its value.
+        Underline style repeats the colour for colour-blind readers: dotted = human-like, solid = AI-like.</p>
+
+      <article class="doc" id="doc" aria-label="Annotated document"></article>
+
+      <div class="actions">
+        <a class="primary link-btn" id="dlHtml" href="#" target="_blank" rel="noopener">Open report (printable)</a>
+        <a class="ghost link-btn" id="dlHtmlFile" href="#">Download HTML</a>
+        <a class="ghost link-btn" id="dlJson" href="#">Download JSON</a>
+        <button class="ghost" id="printBtn" type="button">Print this page</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 ARCHIVE ============ -->
+  <section id="view-history" class="view" hidden>
+    <div class="page-head">
+      <p class="eyebrow">Local archive</p>
+      <h1>Previous analyses</h1>
+      <p class="lede">Stored only in <span class="mono">data/history.db</span> on this machine.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="ledger" id="ledger">
+        <thead><tr><th>Date (UTC)</th><th>Title</th><th>Source</th><th class="num">Words</th><th class="num">AI score</th><th>Verdict</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty" id="histEmpty" hidden><p>The archive is empty.</p></div>
+    </div>
+    <div class="actions"><button class="ghost danger" id="clearHistory" type="button">Delete entire archive</button></div>
+  </section>
+
+  <!-- ============ 04 METHOD ============ -->
+  <section id="view-method" class="view" hidden>
+    <div class="page-head">
+      <p class="eyebrow">Methodology &amp; limitations</p>
+      <h1>What this tool does, and what it cannot</h1>
+    </div>
+    <div class="method">
+      <div class="panel">
+        <h3>Pipeline</h3>
+        <ol class="steps">
+          <li><b>Segment</b> the text into paragraphs and sentences, keeping character offsets.</li>
+          <li><b>Score</b> each paragraph with the BERT classifier (<span class="mono" id="mModel">followsci/bert-ai-text-detector</span>), 512-token limit; long paragraphs are chunked.</li>
+          <li><b>Window</b> overlapping 3-sentence windows are scored to localise which sentences drive a paragraph's score.</li>
+          <li><b>Aggregate</b> paragraph scores by word count into the document score; bands set the verdict.</li>
+        </ol>
+      </div>
+      <div class="panel">
+        <h3>Current configuration</h3>
+        <dl class="kv" id="mConfig"></dl>
+      </div>
+      <div class="panel wide" id="evalPanel">
+        <h3>Measured performance <span class="mono small muted">(our own evaluation)</span></h3>
+        <div id="evalBody" class="small muted">Loading&hellip;</div>
+      </div>
+      <div class="panel wide caution">
+        <h3>Limitations - please read</h3>
+        <ul>
+          <li><b>Not proof.</b> The score is a stylometric signal. Human writing can look AI-like and edited or paraphrased AI text can look human-like.</li>
+          <li><b>Domain.</b> Trained on arXiv-style academic paragraphs; accuracy drops on casual, creative or technical-manual text.</li>
+          <li><b>Fairness.</b> Detectors of this kind are known to over-flag some non-native English writers. Treat flags with extra caution.</li>
+          <li><b>Length.</b> Under ~100 words results are unreliable; under 40 words none is given.</li>
+          <li><b>English only.</b> The model has no Chinese or other-language support.</li>
+          <li><b>Mixed authorship.</b> The model cannot tell partially AI-assisted text apart; sentence highlights are estimates.</li>
+        </ul>
+        <p class="small">The upstream model card advises against using the output as the sole basis for any misconduct decision. This project follows that advice.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot small mono">Open Detector prototype &middot; model by followsci (MIT) &middot; final-year academic project &middot; runs locally</footer>
+<div class="busy" id="busy" hidden><div class="busy-box"><div class="scan"></div><p class="mono">Reading document&hellip;</p><p class="small muted" id="busyNote">The first run after start-up can take a few seconds.</p></div></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

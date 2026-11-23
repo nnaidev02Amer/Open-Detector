@@ -1,0 +1,60 @@
+{
+  "created_utc": "2026-11-18T10:22:07+00:00",
+  "seed": 13,
+  "filters": {
+    "min_words": 40,
+    "max_words": 400,
+    "dedupe": "first 300 characters"
+  },
+  "label": "1 = AI-generated, 0 = human-written",
+  "counts": {
+    "HC3/AI": 1000,
+    "HC3/human": 1000,
+    "MAGE/AI": 500,
+    "MAGE/human": 500,
+    "MAGE-OOD/AI": 150,
+    "MAGE-OOD/human": 150
+  },
+  "total": 3300,
+  "sources": [
+    {
+      "name": "HC3",
+      "url": "https://huggingface.co/datasets/Hello-SimpleAI/HC3",
+      "license": "CC-BY-SA-4.0",
+      "subsets": [
+        "wiki_csai",
+        "finance",
+        "medicine",
+        "open_qa"
+      ],
+      "generators": [
+        "ChatGPT (GPT-3.5, early 2023)"
+      ]
+    },
+    {
+      "name": "MAGE",
+      "url": "https://huggingface.co/datasets/yaful/MAGE",
+      "license": "Apache-2.0",
+      "files": [
+        "test.csv",
+        "test_ood_set_gpt.csv"
+      ],
+      "generators": [
+        "27 LLMs (see MAGE paper)"
+      ]
+    }
+  ],
+  "raw_sha256": {
+    "data\\raw\\hc3\\finance.jsonl": "72e3a439714c4693e115f8ad0b917988688abc07acba8de812198cb13cd5d72e",
+    "data\\raw\\hc3\\medicine.jsonl": "7141b0f5b3477543e95e24a2b268f46c375b08703a390e9a04ff69f5193caa28",
+    "data\\raw\\hc3\\open_qa.jsonl": "4d968e1e1473cbdf5978024872768f0c6f27dacf681f35166dc191733dccd664",
+    "data\\raw\\hc3\\wiki_csai.jsonl": "4f78105c72e7edd3b619b3b44abac1e6f8bdb42211f22e43191d4dae889e1968",
+    "data\\raw\\mage\\test.csv": "dcb8a8a8de1459d382ac2da5e0f1c39452e8bc47d186d7393f3ed4308f762ac7",
+    "data\\raw\\mage\\test_ood_set_gpt.csv": "b9fe1faaa45fbbad446f527da12d42e3e9e3bbd207f7ea054e81ec8e922016d2"
+  },
+  "caveats": [
+    "None of these datasets is arXiv-style academic prose; they are out-of-domain for the model.",
+    "The model's own training/test split is not public, so overlap with these public datasets cannot be ruled out.",
+    "HC3 AI text is from ChatGPT (2023); newer LLMs may behave differently."
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "seed": 13,
+  "generator": "claude-sonnet-5.5 (written in-session by the assistant, 2026-11-21)",
+  "counts": {
+    "train": {
+      "total": 116,
+      "human": 58,
+      "ai": 58,
+      "by_style": {
+        "simple_english": {
+          "human": 18,
+          "ai": 18
+        },
+        "formal": {
+          "human": 18,
+          "ai": 18
+        },
+        "technical": {
+          "human": 10,
+          "ai": 10
+        },
+        "conversational": {
+          "human": 12,
+          "ai": 12
+        }
+      }
+    },
+    "val": {
+      "total": 46,
+      "human": 23,
+      "ai": 23,
+      "by_style": {
+        "simple_english": {
+          "human": 7,
+          "ai": 7
+        },
+        "formal": {
+          "human": 7,
+          "ai": 7
+        },
+        "technical": {
+          "human": 4,
+          "ai": 4
+        },
+        "conversational": {
+          "human": 5,
+          "ai": 5
+        }
+      }
+    },
+    "test": {
+      "total": 74,
+      "human": 37,
+      "ai": 37,
+      "by_style": {
+        "simple_english": {
+          "human": 11,
+          "ai": 11
+        },
+        "formal": {
+          "human": 11,
+          "ai": 11
+        },
+        "technical": {
+          "human": 7,
+          "ai": 7
+        },
+        "conversational": {
+          "human": 8,
+          "ai": 8
+        }
+      }
+    }
+  },
+  "checks": {
+    "topic_overlap": {
+      "train&val": 0,
+      "train&test": 0,
+      "val&test": 0
+    },
+    "exact_duplicate_texts": 0,
+    "max_8gram_jaccard_across_splits": {
+      "train&val": [
+        0.007,
+        [
+          "tech-py_function-ai",
+          "tech-py_class-ai"
+        ]
+      ],
+      "train&test": [
+        0.0,
+        null
+      ],
+      "val&test": [
+        0.0,
+        null
+      ]
+    },
+    "max_8gram_jaccard_ai_vs_human_same_topic": 0.058
+  },
+  "length_words_mean": {
+    "conversational/human": 104.5,
+    "conversational/ai": 93.6,
+    "formal/human": 98.1,
+    "formal/ai": 82.7,
+    "simple_english/human": 79.0,
+    "simple_english/ai": 85.8,
+    "technical/human": 73.2,
+    "technical/ai": 81.0
+  },
+  "human_provenance_cutoff": "all human sources dated before 2022-06-01 (ChatGPT released 2022-11-30)",
+  "mixed_documents": {
+    "train": 23,
+    "val": 11,
+    "test": 22
+  }
+}

@@ -205,3 +205,11 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Open Detector: local data that must never be committed
+# Anchored to the repository root so evaluation/data/ (eval_set.jsonl, manifest.json) stays tracked.
+/data/
+*.db
+# Raw dataset downloads and cached API responses (re-created by the collect_* scripts)
+evaluation/data/raw/
+evaluation/indomain/raw/
